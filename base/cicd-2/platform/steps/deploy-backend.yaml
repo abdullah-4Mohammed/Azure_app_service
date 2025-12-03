@@ -1,0 +1,31 @@
+parameters:
+  - name: bicepFilePath
+    type: string
+  - name: backendServiceArmConnection
+    type: string
+  - name: deploymentName
+    type: string
+  - name: location
+    type: string
+  - name: backendAzureRmResourceGroupName
+    type: string
+steps:
+- task: AzureCLI@2
+  displayName: Deploy Backend Rg, Sa and Container
+  inputs:
+    azureSubscription: ${{ parameters.backendServiceArmConnection }}
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+            set -ex
+            
+            az group create --name $(backendAzureRmResourceGroupName) --location $(location)   
+            az deployment group create --template-file $(bicepFilePath) \
+            --resource-group $(backendAzureRmResourceGroupName) \
+            --mode Incremental --parameters storageAccountType="Standard_LRS" \
+            --parameters storageAccountName=$(backendAzureRmStorageAccountName) \
+            --parameters blobContainerNameShared=$(backendAzureRmContainerName) \
+            --parameters blobContainerNameEnvironment=$(backendAzureRmContainerNameEnvironment) \
+            --parameters blobContainerNameCommon=$(backendAzureRmContainerNameCommon)              
+  #az deployment group create --name '$(deploymentName)' --resource-group '$(backendAzureRmResourceGroupName)' --template-file '$(bicepFilePath)'
+#az deployment group create --resource-group '$(backendAzureRmResourceGroupName)' --template-file '$(bicepFilePath)'

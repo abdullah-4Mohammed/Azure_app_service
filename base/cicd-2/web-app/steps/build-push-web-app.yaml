@@ -1,0 +1,43 @@
+#web-ui build and push
+parameters:
+- name: AzureResourseManagerConnectionType
+  default: 'Systems Team Development (6064d0ef-b707-4488-aec9-04a2f1f1c168)'
+- name: ContainerRegistryConnectionType
+  default: 'dia-dev-acr-opt-drsc'
+- name: ContainerRegistryName
+  default: 'diadevacr'
+- name: ImageTag
+  default: '$(Build.BuildId)'
+- name: ImageRepositoryImageName
+  default: 'web-app'
+- name: DockerfilePath
+  default: '$(app-src)/app/Dockerfile'
+# stages:
+# - stage: Build_and_Push
+#   displayName: "Build and Push Stage"
+# jobs:
+#   - job: Build
+#     displayName: 'Build Job'
+steps:
+# build image using docker task
+- task: Docker@2
+  displayName: 'Build'
+  inputs:
+    command: 'build'
+    containerRegistry: ${{ parameters.ContainerRegistryConnectionType }}
+    dockerfile: ${{ parameters.DockerfilePath }}
+    repository: ${{ parameters.ImageRepositoryImageName }}
+    tags: |
+      ${{ parameters.ImageTag }}
+      latest
+  #task to push the image to the registry
+- task: Docker@2
+  displayName: 'Push Docker Image to ACR'
+  #condition: and(succeeded(), eq(variables['SourceBranchName'], 'main'))
+  inputs:
+    command: 'push'
+    containerRegistry: ${{ parameters.ContainerRegistryConnectionType }}
+    repository: ${{ parameters.ImageRepositoryImageName }}
+    tags: |
+      ${{ parameters.ImageTag }}
+      latest

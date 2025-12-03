@@ -1,0 +1,7 @@
+environment         = "__environment__"
+resource_group_name  = "__resource_group_name__"
+location             = "__location__"
+acr_name             = "__acr_name__"
+fileshare_name       = "__fileshare_name__"
+service_name = "__service_name__"
+kind = "__kind__"

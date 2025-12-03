@@ -1,0 +1,19 @@
+variables:
+  environment: "dev"
+  resource_group_name: "mmt-dia-dev-uks-rg"
+  location: "uksouth"
+  service_name: "mmt-dia-uks"
+  
+  acr_name: "diadevacr"
+  kind: "Linux"
+  workingDirectory: '$(System.DefaultWorkingDirectory)/infra-2/Tf-files'
+  backendType: 'azurerm'
+  backendServiceArmConnection: 'Systems Team Development 2024'
+  backendAzureRmResourceGroupName: 'mmt-dia-shared-uks-rg'
+  backendAzureRmStorageAccountName: "diatfstatestor"
+  backendAzureRmContainerName: 'platformstate-shared'
+  backendAzureRmContainerNameEnvironment: 'dev-platform'
+  backendAzureRmContainerNameCommon: 'common-platform'
+  backendAzureRmKey: 'dev-platform.tfstate'
+  deploymentName: 'dia-backend-deployment'
+  bicepFilePath: '$(System.DefaultWorkingDirectory)/infra-2/backend-init/backend-deployment.bicep'

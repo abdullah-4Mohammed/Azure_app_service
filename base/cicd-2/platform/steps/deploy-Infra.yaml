@@ -1,0 +1,79 @@
+parameters:
+  - name: environment
+    type: string
+  - name: location
+    type: string
+  - name: resourceGroupName
+    type: string
+  - name: acrName
+    type: string
+  - name: workingDirectory
+    type: string
+  - name: backendType
+    type: string
+  - name: backendServiceArmConnection
+    type: string
+  - name: backendAzureRmResourceGroupName
+    type: string
+  - name: backendAzureRmStorageAccountName
+    type: string
+  - name: backendAzureRmContainerName
+    type: string
+  - name: backendAzureRmKey
+    type: string
+    
+steps:
+  - task: replacetokens@3
+    displayName: 'Replace tokens in terraform files'
+    inputs:
+      rootDirectory: ${{ parameters.workingDirectory }}
+      targetFiles: '*.tfvars'
+      encoding: 'auto'
+      writeBOM: true
+      actionOnMissing: 'warn'
+      keepToken: false
+      tokenPrefix: '__'
+      tokenSuffix: '__'
+      useLegacyPattern: false
+      enableTransforms: false
+      enableTelemetry: true
+  
+  - bash: |
+      cat ${{ parameters.workingDirectory }}/*.tfvars
+    displayName: 'Cat Processed Parameters'
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+    displayName: 'Install Terraform'
+    inputs:
+        terraformVersion: '1.6.0'
+    name: TerraformInstallerTask
+  
+  - task: TerraformTaskV4@4
+    displayName: Terraform Init
+    inputs:
+      command: 'init'
+      workingDirectory: ${{ parameters.workingDirectory }}
+      backendType: ${{ parameters.backendType }}
+      backendServiceArm: ${{ parameters.backendServiceArmConnection }}
+      backendAzureRmResourceGroupName: ${{ parameters.backendAzureRmResourceGroupName }}
+      backendAzureRmStorageAccountName: ${{ parameters.backendAzureRmStorageAccountName }}
+      backendAzureRmContainerName: ${{ parameters.backendAzureRmContainerName }}
+      backendAzureRmKey: ${{ parameters.backendAzureRmKey }}
+      allowTelemetryCollection: true
+  - task: TerraformTaskV4@4
+    displayName: Terraform Plan
+    inputs:
+      command: 'plan'
+      workingDirectory: ${{ parameters.workingDirectory }}
+      #environmentServiceName: ${{ parameters.backendServiceArmConnection }}
+      environmentServiceNameAzureRM: ${{ parameters.backendServiceArmConnection }}
+      commandOptions: '-var-file=terraform.tfvars  --out=planfile'
+      allowTelemetryCollection: true
+  - task: TerraformTaskV4@4
+    displayName: Terraform Apply
+    inputs:
+      command: 'apply'
+      workingDirectory: ${{ parameters.workingDirectory }}
+      #environmentServiceName: ${{ parameters.backendServiceArmConnection }}
+      environmentServiceNameAzureRM: ${{ parameters.backendServiceArmConnection }}
+      commandOptions: '-auto-approve planfile'
+      allowTelemetryCollection: true

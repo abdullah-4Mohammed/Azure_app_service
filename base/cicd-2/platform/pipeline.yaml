@@ -1,0 +1,52 @@
+name: $(SourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
+trigger:
+  # branches:
+  #   include:
+  #     - main
+  paths:
+    include:
+      - 'cicd-2/platform/**'
+      - 'infra-2/**'
+      
+      
+pool: Linux Pool
+parameters:
+- name: environments
+  type: object
+  #default: ['dev' ,'prod']
+  default: ['dev']
+stages:
+- ${{ each env in parameters.environments }}:
+  - stage: Deploy_${{ env }}_Environment
+    displayName: Deploy ${{ env }} Environment
+    jobs:
+    - deployment: 'ApprovalCheck'
+      environment: 'portal-infrastructure-${{ env }}'
+    - job: Deploy_Infrastucture
+      displayName: Deploy Infrastructure
+      #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))  
+      variables:
+        - template: variables/vars-deploy-${{ env }}.yaml
+      steps:
+     # tas for backend
+      - template: steps/deploy-backend.yaml
+        parameters:
+          bicepFilePath: ${{ variables.bicepFilePath }}
+          deploymentName: ${{ variables.deploymentName }}
+          backendServiceArmConnection: ${{ variables.backendServiceArmConnection }}
+          location: ${{ variables.location }}
+          backendAzureRmResourceGroupName: ${{ variables.backendAzureRmResourceGroupName }}
+      - template: steps/deploy-Infra.yaml
+        parameters:
+          environment: ${{ variables.environment }}
+          location: ${{ variables.location }}
+          resourceGroupName: ${{ variables.resource_group_name }}
+      
+          acrName: ${{ variables.acr_name }}
+          workingDirectory: ${{ variables.workingDirectory }}
+          backendType: ${{ variables.backendType }}
+          backendServiceArmConnection: ${{ variables.backendServiceArmConnection }}
+          backendAzureRmResourceGroupName: ${{ variables.backendAzureRmResourceGroupName }}
+          backendAzureRmStorageAccountName: ${{ variables.backendAzureRmStorageAccountName }}
+          backendAzureRmContainerName: ${{ variables.backendAzureRmContainerName }}
+          backendAzureRmKey: ${{ variables.backendAzureRmKey }}
