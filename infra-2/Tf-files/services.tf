@@ -51,7 +51,7 @@ resource "azurerm_linux_web_app" "web-app" {
     #   action      = "Allow"
     #   headers     = []
     #   ip_address  = "86.5.141.187/32" #my IP
-    #   name        = "Allow MMT VPN"
+    #   name        = "Allow MM VPN"
     #   priority    = 100
     # }
     # ip_restriction {
@@ -82,7 +82,7 @@ resource "azurerm_linux_web_app" "web-app" {
   #     action      = "Allow"
   #     headers     = []
   #     ip_address  = "86.5.141.187/32" #my IP
-  #     name        = "Allow MMT VPN"
+  #     name        = "Allow MM VPN"
   #     priority    = 100
   #   }
   #   ip_restriction {
@@ -140,7 +140,7 @@ resource "azurerm_application_gateway" "dia-app-gateway" {
   }
   backend_address_pool {
     name = "appGatewayBackendPool"
-    fqdns = ["mmt-dia-uks-dev-app.azurewebsites.net"]
+    fqdns = ["d_lab-dia-uks-dev-app.azurewebsites.net"]
   }
   backend_http_settings {
     name                  = "appGatewayBackendHttpSettings"
@@ -150,7 +150,7 @@ resource "azurerm_application_gateway" "dia-app-gateway" {
     protocol              = "Http"
     request_timeout       = 60
     #Override with new host name
-    host_name = "mmt-dia-uks-dev-app.azurewebsites.net"
+    host_name = "d_lab-dia-uks-dev-app.azurewebsites.net"
   }
   http_listener {
     name                           = "appGatewayHttpListener"

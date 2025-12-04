@@ -81,8 +81,8 @@ resource "azurerm_network_security_rule" "rule" {
 #     destination_address_prefixes = []
 #   },
 #   "1" = {
-#     name                         = "MMT_VPN"
-#     description                  = "MMT Digital VPN address"
+#     name                         = "d_lab_VPN"
+#     description                  = "d_lab Digital VPN address"
 #     protocol                     = "Tcp"
 #     access                       = "Allow"
 #     priority                     = 110

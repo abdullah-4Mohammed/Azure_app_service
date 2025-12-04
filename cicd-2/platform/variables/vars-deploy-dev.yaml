@@ -1,15 +1,15 @@
 variables:
   environment: "dev"
-  resource_group_name: "mmt-dia-dev-uks-rg"
+  resource_group_name: "d_lab-dia-dev-uks-rg"
   location: "uksouth"
-  service_name: "mmt-dia-uks"
+  service_name: "d_lab-dia-uks"
   
   acr_name: "diadevacr"
   kind: "Linux"
   workingDirectory: '$(System.DefaultWorkingDirectory)/infra-2/Tf-files'
   backendType: 'azurerm'
   backendServiceArmConnection: 'Systems Team Development 2024'
-  backendAzureRmResourceGroupName: 'mmt-dia-shared-uks-rg'
+  backendAzureRmResourceGroupName: 'd_lab-dia-shared-uks-rg'
   backendAzureRmStorageAccountName: "diatfstatestor"
   backendAzureRmContainerName: 'platformstate-shared'
   backendAzureRmContainerNameEnvironment: 'dev-platform'

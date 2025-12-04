@@ -6,9 +6,9 @@ steps:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Systems Team Development (6064d0ef-b707-4488-aec9-04a2f1f1c168)'
     appType: 'webAppContainer'
-    WebAppName: 'mmt-dia-uks-dev-app'
+    WebAppName: 'd_lab-dia-uks-dev-app'
     deployToSlotOrASE: true
-    ResourceGroupName: 'mmt-dia-dev-uks-rg'
+    ResourceGroupName: 'd_lab-dia-dev-uks-rg'
     DockerNamespace: 'diadevacr.azurecr.io'
     DockerRepository: 'web-app'
     DockerImageTag: 'latest'
