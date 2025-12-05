@@ -8,7 +8,7 @@ variables:
   kind: "Linux"
   workingDirectory: '$(System.DefaultWorkingDirectory)/infra-2/Tf-files'
   backendType: 'azurerm'
-  backendServiceArmConnection: 'Systems Team Development 2024'
+  backendServiceArmConnection: 'AzToAz_AzRm'
   backendAzureRmResourceGroupName: 'd_lab-dia-shared-uks-rg'
   backendAzureRmStorageAccountName: "diatfstatestor"
   backendAzureRmContainerName: 'platformstate-shared'
