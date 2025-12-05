@@ -7,9 +7,13 @@ trigger:
     include:
       - 'cicd-2/platform/**'
       - 'infra-2/**'
-      
-      
-pool: Linux Pool
+            
+pool:
+  vmImage: 'ubuntu-latest'
+
+resources:
+- repo: self
+
 parameters:
 - name: environments
   type: object
