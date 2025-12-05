@@ -8,7 +8,7 @@ variables:
   fileshare_name: "prod-fileshare"
   workingDirectory: '$(System.DefaultWorkingDirectory)/infra-2/Tf-files'
   backendType: 'azurerm'
-  backendServiceArmConnection: 'Systems Team Development (6064d0ef-b707-4488-aec9-04a2f1f1c168)'
+  backendServiceArmConnection: 'AzToAz_AzRm''
   backendAzureRmResourceGroupName: 'd_lab-dia-shared-uks-rg'
   backendAzureRmStorageAccountName: 'diatfstatestor'
   backendAzureRmContainerName: 'platformstate'
