@@ -8,8 +8,8 @@
 param storageAccountType string 
 param storageAccountName string
 param blobContainerNameShared string
-param blobContainerNameCommon string
-param blobContainerNameEnvironment string
+// param blobContainerNameCommon string
+// param blobContainerNameEnvironment string
 @description('Location for all resources.')
 param location string = resourceGroup().location
 
@@ -25,19 +25,19 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' = {
   }
 }
 
-resource storageAccountContainerCommon 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-09-01' = {
-  name: '${storageAccountName}/default/${blobContainerNameCommon}'
-  dependsOn: [
-    storageAccount
-  ]
-}
+// resource storageAccountContainerCommon 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-09-01' = {
+//   name: '${storageAccountName}/default/${blobContainerNameCommon}'
+//   dependsOn: [
+//     storageAccount
+//   ]
+// }
 
-resource storageAccountContainerEnvironment 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-09-01' = {
-  name: '${storageAccountName}/default/${blobContainerNameEnvironment}'
-  dependsOn: [
-    storageAccount
-  ]
-}
+// resource storageAccountContainerEnvironment 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-09-01' = {
+//   name: '${storageAccountName}/default/${blobContainerNameEnvironment}'
+//   dependsOn: [
+//     storageAccount
+//   ]
+// }
 
 resource storageAccountContainerShared 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-09-01' = {
   name: '${storageAccountName}/default/${blobContainerNameShared}'
