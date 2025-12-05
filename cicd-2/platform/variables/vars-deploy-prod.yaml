@@ -13,3 +13,4 @@ variables:
   backendAzureRmStorageAccountName: 'diatfstatestor'
   backendAzureRmContainerName: 'platformstate'
   backendAzureRmKey: 'prod-platform.tfstate'
+
