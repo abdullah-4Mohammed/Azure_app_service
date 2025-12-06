@@ -32,26 +32,26 @@ stages:
       variables:
         - template: variables/vars-deploy-${{ env }}.yaml
       steps:
-     # tas for backend
-      - template: steps/deploy-backend.yaml
-        parameters:
-          bicepFilePath: ${{ variables.bicepFilePath }}
-          deploymentName: ${{ variables.deploymentName }}
-          backendServiceArmConnection: ${{ variables.backendServiceArmConnection }}
-          location: ${{ variables.location }}
-          backendAzureRmResourceGroupName: ${{ variables.backendAzureRmResourceGroupName }}
+    #  # tas for backend
+    #   - template: steps/deploy-backend.yaml
+    #     parameters:
+    #       bicepFilePath: ${{ variables.bicepFilePath }}
+    #       deploymentName: ${{ variables.deploymentName }}
+    #       backendServiceArmConnection: ${{ variables.backendServiceArmConnection }}
+    #       location: ${{ variables.location }}
+    #       backendAzureRmResourceGroupName: ${{ variables.backendAzureRmResourceGroupName }}
       
-      # # deploy infra task
-      # - template: steps/deploy-Infra.yaml
-      #   parameters:
-      #     environment: ${{ variables.environment }}
-      #     location: ${{ variables.location }}
-      #     resourceGroupName: ${{ variables.resource_group_name }}   
-      #     acrName: ${{ variables.acr_name }}
-      #     workingDirectory: ${{ variables.workingDirectory }}
-      #     backendType: ${{ variables.backendType }}
-      #     backendServiceArmConnection: ${{ variables.backendServiceArmConnection }}
-      #     backendAzureRmResourceGroupName: ${{ variables.backendAzureRmResourceGroupName }}
-      #     backendAzureRmStorageAccountName: ${{ variables.backendAzureRmStorageAccountName }}
-      #     backendAzureRmContainerName: ${{ variables.backendAzureRmContainerName }}
-      #     backendAzureRmKey: ${{ variables.backendAzureRmKey }}
+      # deploy infra task
+      - template: steps/deploy-Infra.yaml
+        parameters:
+          environment: ${{ variables.environment }}
+          location: ${{ variables.location }}
+          resourceGroupName: ${{ variables.resource_group_name }}   
+          acrName: ${{ variables.acr_name }}
+          workingDirectory: ${{ variables.workingDirectory }}
+          backendType: ${{ variables.backendType }}
+          backendServiceArmConnection: ${{ variables.backendServiceArmConnection }}
+          backendAzureRmResourceGroupName: ${{ variables.backendAzureRmResourceGroupName }}
+          backendAzureRmStorageAccountName: ${{ variables.backendAzureRmStorageAccountName }}
+          backendAzureRmContainerName: ${{ variables.backendAzureRmContainerName }}
+          backendAzureRmKey: ${{ variables.backendAzureRmKey }}
