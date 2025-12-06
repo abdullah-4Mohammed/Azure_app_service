@@ -2,7 +2,7 @@ variables:
   environment: "prod"
   resource_group_name: "d_lab-dia-prod-uks-rg"
   location: "uksouth"
-  service_name: "d_lab-dia-uks"
+  service_name: "dlab-dia-uks"
   kind: "Linux"
   acr_name: "diaprodacr"
   fileshare_name: "prod-fileshare"
