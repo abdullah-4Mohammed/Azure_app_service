@@ -10,7 +10,7 @@ variables:
   backendType: 'azurerm'
   backendServiceArmConnection: 'AzToAz_AzRm''
   backendAzureRmResourceGroupName: 'd_lab-dia-shared-uks-rg'
-  backendAzureRmStorageAccountName: 'diatfstatestor'
+  backendAzureRmStorageAccountName: 'diatfstatestorage'
   backendAzureRmContainerName: 'platformstate'
   backendAzureRmKey: 'prod-platform.tfstate'
 
