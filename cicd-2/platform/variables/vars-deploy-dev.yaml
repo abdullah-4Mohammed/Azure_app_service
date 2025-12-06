@@ -1,6 +1,6 @@
 variables:
   environment: "dev"
-  resource_group_name: "d_lab-dia-dev-uks-rg"
+  resource_group_name: "dlab-dia-dev-weu-rg"
   #location: "uksouth" no qouta available for app svc on free accounts
   location: "westeurope"
   service_name: "dlab-dia-uks"
@@ -10,7 +10,7 @@ variables:
   workingDirectory: '$(System.DefaultWorkingDirectory)/infra-2/Tf-files'
   backendType: 'azurerm'
   backendServiceArmConnection: 'AzToAz_AzRm'
-  backendAzureRmResourceGroupName: 'd_lab-dia-shared-uks-rg'
+  backendAzureRmResourceGroupName: "dlab-dia-dev-weu-rg"
   backendAzureRmStorageAccountName: "diatfstatestorage"
   backendAzureRmContainerName: 'platformstate-shared'
   backendAzureRmContainerNameEnvironment: 'dev-platform'
