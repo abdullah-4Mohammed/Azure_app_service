@@ -154,10 +154,13 @@ resource "azurerm_application_gateway" "dia-app-gateway" {
     name                 = "appGatewayFrontendIP"
     public_ip_address_id = azurerm_public_ip.dia-app-gateway-public-ip.id
   }
+  #The target servers the Application Gateway forwards traffic to.
   backend_address_pool {
     name = "appGatewayBackendPool"
-    fqdns = ["d_lab-dia-uks-dev-app.azurewebsites.net"]
+    #fqdns = ["dlab-dia-uks-dev-app.azurewebsites.net"]
+    fqdns = ["${azurerm_linux_web_app.web-app.default_hostname}"]
   }
+  #How the Application Gateway communicates with the backend.
   backend_http_settings {
     name                  = "appGatewayBackendHttpSettings"
     cookie_based_affinity = "Disabled"
@@ -166,7 +169,8 @@ resource "azurerm_application_gateway" "dia-app-gateway" {
     protocol              = "Http"
     request_timeout       = 60
     #Override with new host name
-    host_name = "d_lab-dia-uks-dev-app.azurewebsites.net"
+    #host_name = "dlab-dia-uks-dev-app.azurewebsites.net"
+    host_name = azurerm_linux_web_app.web-app.default_hostname
   }
   http_listener {
     name                           = "appGatewayHttpListener"
