@@ -10,7 +10,7 @@ variables:
   workingDirectory: '$(System.DefaultWorkingDirectory)/infra-2/Tf-files'
   backendType: 'azurerm'
   backendServiceArmConnection: 'AzToAz_AzRm''
-  backendAzureRmResourceGroupName: "dlab-dia-dev-weu-rg"
+  backendAzureRmResourceGroupName: "dlab-dia-shared-dev-weu-rg"
   backendAzureRmStorageAccountName: 'diatfstatestorage'
   backendAzureRmContainerName: 'platformstate'
   backendAzureRmKey: 'prod-platform.tfstate'
