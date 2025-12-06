@@ -1,7 +1,8 @@
 variables:
   environment: "prod"
   resource_group_name: "d_lab-dia-prod-uks-rg"
-  location: "uksouth"
+  #location: "uksouth" no qouta available for app svc on free accounts
+  location: "westeurope"
   service_name: "dlab-dia-uks"
   kind: "Linux"
   acr_name: "diaprodacr"
