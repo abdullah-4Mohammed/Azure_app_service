@@ -40,17 +40,18 @@ stages:
           backendServiceArmConnection: ${{ variables.backendServiceArmConnection }}
           location: ${{ variables.location }}
           backendAzureRmResourceGroupName: ${{ variables.backendAzureRmResourceGroupName }}
-      - template: steps/deploy-Infra.yaml
-        parameters:
-          environment: ${{ variables.environment }}
-          location: ${{ variables.location }}
-          resourceGroupName: ${{ variables.resource_group_name }}
       
-          acrName: ${{ variables.acr_name }}
-          workingDirectory: ${{ variables.workingDirectory }}
-          backendType: ${{ variables.backendType }}
-          backendServiceArmConnection: ${{ variables.backendServiceArmConnection }}
-          backendAzureRmResourceGroupName: ${{ variables.backendAzureRmResourceGroupName }}
-          backendAzureRmStorageAccountName: ${{ variables.backendAzureRmStorageAccountName }}
-          backendAzureRmContainerName: ${{ variables.backendAzureRmContainerName }}
-          backendAzureRmKey: ${{ variables.backendAzureRmKey }}
+      # # deploy infra task
+      # - template: steps/deploy-Infra.yaml
+      #   parameters:
+      #     environment: ${{ variables.environment }}
+      #     location: ${{ variables.location }}
+      #     resourceGroupName: ${{ variables.resource_group_name }}   
+      #     acrName: ${{ variables.acr_name }}
+      #     workingDirectory: ${{ variables.workingDirectory }}
+      #     backendType: ${{ variables.backendType }}
+      #     backendServiceArmConnection: ${{ variables.backendServiceArmConnection }}
+      #     backendAzureRmResourceGroupName: ${{ variables.backendAzureRmResourceGroupName }}
+      #     backendAzureRmStorageAccountName: ${{ variables.backendAzureRmStorageAccountName }}
+      #     backendAzureRmContainerName: ${{ variables.backendAzureRmContainerName }}
+      #     backendAzureRmKey: ${{ variables.backendAzureRmKey }}
