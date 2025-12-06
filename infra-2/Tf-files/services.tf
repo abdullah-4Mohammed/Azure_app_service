@@ -25,10 +25,26 @@ resource "azurerm_app_service_plan" "asp" {
   reserved            = true
   #sku_name            = "var.app_plan_sku_name" # outdated
 
+  # sku Stock Keeping Unit - the price tier and size
   sku {
-    tier = "Standard"
-    size = "S1"
+  tier = "Free"      # Free
+  size = "F1"        # Shared, 1 GB RAM, 60 min/day limit
   }
+
+    # sku Stock Keeping Unit - the price tier and size
+  # tier: The pricing/feature level (Free, Basic, Standard, Premium)
+  # size: The instance size within that tier (F1, B1, S1, P1, etc.)
+
+  # sku {
+  #   tier = "Standard"   # Costs ~$70/month
+  #   size = "S1"   # 1 core, 1.75 GB RAM
+  # }
+
+  #   sku {
+  #   tier = "Basic"     # Costs ~$13/month
+  #   size = "B1"        # 1 core, 1.75 GB RAM
+  # }
+
 }
 
 #App Service
