@@ -61,7 +61,7 @@ resource "azurerm_linux_web_app" "web-app" {
   }
   
   site_config {
-    always_on = true
+    always_on = false  # Change from true becuase cant be done on free tier
     #linux_fx_version = "DOCKER|${var.docker_registry_server_name}/${var.docker_custom_image_name}:${var.docker_custom_image_tag}"
     #   ip_restriction {
     #   action      = "Allow"
