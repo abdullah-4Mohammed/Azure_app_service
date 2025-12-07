@@ -54,7 +54,7 @@ resource "azurerm_linux_web_app" "web-app" {
   resource_group_name = azurerm_resource_group.rg.name
   service_plan_id = azurerm_app_service_plan.asp.id
   #https_only          = true
-  virtual_network_subnet_id = azurerm_subnet.dia-frontend-subnet.id
+  #virtual_network_subnet_id = azurerm_subnet.dia-frontend-subnet.id   # free tier app svc dosnt support vnet attachming
   
   identity {
     type = "SystemAssigned"
@@ -77,7 +77,7 @@ resource "azurerm_linux_web_app" "web-app" {
     #   name        = "Deny all"
     #   priority    = 50000
     # }
-    vnet_route_all_enabled = true
+    #vnet_route_all_enabled = true  #free tier app svc dosnt support net attach
   
   }
     
