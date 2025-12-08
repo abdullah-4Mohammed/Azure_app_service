@@ -137,6 +137,11 @@ resource "azurerm_application_gateway" "dia-app-gateway" {
   name                = "${var.service_name}-${var.environment}-app-gateway"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
+
+  ssl_policy {
+    policy_type = "Predefined"
+    policy_name = "AppGwSslPolicy20220101"
+  }
   sku {
     name     = "Standard_v2"
     tier     = "Standard_v2"
