@@ -35,7 +35,7 @@ resource "azurerm_key_vault_access_policy" "dia-kv_policy_pipeline" {
 resource "azurerm_key_vault_access_policy" "dia-kv_policy_users" {
   key_vault_id = azurerm_key_vault.dia-kv.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = "11deeb2d-26d3-416b-95a4-add5fcc883b1" # it should be the object ID of Me Abdullah
+  object_id    = "e5578fee-a5d4-4279-adf9-6b8d8a97656e" # it should be the object ID of Me Abdullah
   key_permissions = [
     "Create",
     "Get",
