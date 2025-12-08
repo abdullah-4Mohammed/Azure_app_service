@@ -9,42 +9,46 @@ trigger:
 name: $(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 variables:
   app-src: '$(System.DefaultWorkingDirectory)'
-pool: Linux Pool 
+pool: 
+  vmImage: 'ubuntu-latest'
+
+resources:
+- repo: self
 # adding the docker build and push stage
 stages:
-- stage: Build_and_Push
-  displayName: "Build and Push Stage"
-  jobs:
-  - job: Build_and_Push
-    displayName: Build and Push Job
-    #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))  
-    # variables:
-    #   - template: variables/vars-deploy-${{ env }}.yaml
-    steps:
-    - template: steps/build-push-web-app.yaml
-      parameters:
-        ImageTag: '$(Build.BuildId)'
-        ImageRepositoryImageName: 'web-app'
-        ContainerRegistryConnectionType: 'dia-dev-acr-opt-drsc'
-        AzureResourseManagerConnectionType: 'Systems Team Development (6064d0ef-b707-4488-aec9-04a2f1f1c168)'
-        ContainerRegistryName: 'diadevacr'
-        DockerfilePath: '$(app-src)/app/Dockerfile'
-# deploy web-app to app service 
-  # - job: Deploy_Web_App
-  #   displayName: Deploy Web App Job
-  #   dependsOn: Build_and_Push
-  #   #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
-  #   # variables:
-  #   #   - template: variables/vars-deploy-${{ env }}.yaml
-  #   steps:
-  #   - template: steps/deploy-web-app.yaml
-  #     # parameters:
-  #       # ImageTag: '$(Build.BuildId)'
-  #       # ImageRepositoryImageName: 'web-app'
-  #       # ContainerRegistryConnectionType: 'dia-dev-acr-opt-drsc'
-  #       # AzureResourseManagerConnectionType: 'Systems Team Development (6064d0ef-b707-4488-aec9-04a2f1f1c168)'
-  #       # ContainerRegistryName: 'diadevacr'
-  #       # DockerfilePath: '$(app-src)/app/web-ui/Dockerfile'
-  #       # AppServiceName: 'dia-dev-appservice-opt-drsc'
-  #       # AppServicePlanName: 'dia-dev-appserviceplan-opt-drsc'
-  #       # ResourceGroupName: 'dia-dev-rg-opt-drsc'
+  - stage: Build_and_Push
+    displayName: "Build and Push Stage"
+    jobs:
+    - job: Build_and_Push
+      displayName: Build and Push Job
+      #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))  
+      # variables:
+      #   - template: variables/vars-deploy-${{ env }}.yaml
+      steps:
+      - template: steps/build-push-web-app.yaml
+        parameters:
+          ImageTag: '$(Build.BuildId)'
+          ImageRepositoryImageName: 'web-app'
+          ContainerRegistryConnectionType: 'dia-dev-acr-opt-drsc'
+          AzureResourseManagerConnectionType: 'Systems Team Development (6064d0ef-b707-4488-aec9-04a2f1f1c168)'
+          ContainerRegistryName: 'diadevacr'
+          DockerfilePath: '$(app-src)/app/Dockerfile'
+  # deploy web-app to app service 
+    - job: Deploy_Web_App
+      displayName: Deploy Web App Job
+      dependsOn: Build_and_Push
+      #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+      # variables:
+      #   - template: variables/vars-deploy-${{ env }}.yaml
+      steps:
+      - template: steps/deploy-web-app.yaml
+        # parameters:
+          # ImageTag: '$(Build.BuildId)'
+          # ImageRepositoryImageName: 'web-app'
+          # ContainerRegistryConnectionType: 'dia-dev-acr-opt-drsc'
+          # AzureResourseManagerConnectionType: 'Systems Team Development (6064d0ef-b707-4488-aec9-04a2f1f1c168)'
+          # ContainerRegistryName: 'diadevacr'
+          # DockerfilePath: '$(app-src)/app/web-ui/Dockerfile'
+          # AppServiceName: 'dia-dev-appservice-opt-drsc'
+          # AppServicePlanName: 'dia-dev-appserviceplan-opt-drsc'
+          # ResourceGroupName: 'dia-dev-rg-opt-drsc'
