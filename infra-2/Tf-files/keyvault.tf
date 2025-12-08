@@ -66,11 +66,16 @@ resource "azurerm_key_vault_access_policy" "kv_policy" {
 # Add secrets in here
 resource "azurerm_key_vault_secret" "kv_secret_acr_password" {
   name         = "acr-password"
-  value        = "" # to be filled manually
+  value        = azurerm_container_registry.acr.admin_password #"" # leave it embty "" to be filled manually or replace it with dynamic expression to get acr pw dynamiclly.
   key_vault_id = azurerm_key_vault.dia-kv.id
-  lifecycle {
-    ignore_changes = [value]
-  }
+
+  # if we used managed identity , the acr will use the app svc to give it permission to acess it for pull and push. then 
+  # we will not need to kv and secret to give app svc permission for acr. kv will needed just if we have more screts for other services.
+  
+  # prevents Terraform from overwriting. it needed if the pw to be filled manually and to insure tf not override that.
+  # lifecycle {
+  #   ignore_changes = [value] # prevents Terraform from overwriting. it needed if the pw to be filled manually and to insure tf not override that.
+  # }
   depends_on = [ 
     azurerm_key_vault.dia-kv,
     azurerm_key_vault_access_policy.dia-kv_policy_pipeline,
