@@ -71,5 +71,9 @@ resource "azurerm_key_vault_secret" "kv_secret_acr_password" {
   lifecycle {
     ignore_changes = [value]
   }
-  depends_on = [ azurerm_key_vault.dia-kv ]
+  depends_on = [ 
+    azurerm_key_vault.dia-kv,
+    azurerm_key_vault_access_policy.dia-kv_policy_pipeline,
+    azurerm_key_vault_access_policy.dia-kv_policy_users
+    ]
 }
