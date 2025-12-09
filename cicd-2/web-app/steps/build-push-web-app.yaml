@@ -1,9 +1,9 @@
 #web-ui build and push
 parameters:
 - name: AzureResourseManagerConnectionType
-  default: 'Systems Team Development (6064d0ef-b707-4488-aec9-04a2f1f1c168)'
+  default: "AzToAz_AzRm"
 - name: ContainerRegistryConnectionType
-  default: 'dia-dev-acr-opt-drsc'
+  default: "AzToAz_AzRm"
 - name: ContainerRegistryName
   default: 'diadevacr'
 - name: ImageTag

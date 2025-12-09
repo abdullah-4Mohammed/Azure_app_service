@@ -29,9 +29,8 @@ stages:
         parameters:
           ImageTag: '$(Build.BuildId)'
           ImageRepositoryImageName: 'web-app'
-          ContainerRegistryConnectionType: 'dia-dev-acr-opt-drsc'
-          AzureResourseManagerConnectionType: 'Systems Team Development (6064d0ef-b707-4488-aec9-04a2f1f1c168)'
-          ContainerRegistryName: 'diadevacr'
+          ContainerRegistryConnectionType: "AzToAz_Acr"
+          AzureResourseManagerConnectionType: "AzToAz_AzRm"
           DockerfilePath: '$(app-src)/app/Dockerfile'
   # deploy web-app to app service 
     - job: Deploy_Web_App
