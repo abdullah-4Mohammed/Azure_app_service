@@ -8,7 +8,7 @@ steps:
     appType: 'webAppContainer'
     WebAppName: 'dlab-dia-uks-dev-app'
     deployToSlotOrASE: true
-    ResourceGroupName: 'dlab-dia-dev-uks-rg'
+    ResourceGroupName: 'dlab-dia-dev-weu-rg'
     DockerNamespace: 'diadevacr.azurecr.io'
     DockerRepository: 'web-app'
     DockerImageTag: 'latest'
