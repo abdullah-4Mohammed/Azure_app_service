@@ -3,7 +3,7 @@ parameters:
 - name: AzureResourseManagerConnectionType
   default: "AzToAz_AzRm"
 - name: ContainerRegistryConnectionType
-  default: "AzToAz_AzRm"
+  default: "AzToAz_Acr"
 - name: ContainerRegistryName
   default: 'diadevacr'
 - name: ImageTag
