@@ -14,7 +14,7 @@ pool:
 
 resources:
 - repo: self
-# adding the docker build and push stage
+# adding the docker build and push stage 
 stages:
   - stage: Build_and_Push
     displayName: "Build and Push Stage"
