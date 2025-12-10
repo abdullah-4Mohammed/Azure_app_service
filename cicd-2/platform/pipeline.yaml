@@ -32,14 +32,14 @@ stages:
       variables:
         - template: variables/vars-deploy-${{ env }}.yaml
       steps:
-    #  # tas for backend
-    #   - template: steps/deploy-backend.yaml
-    #     parameters:
-    #       bicepFilePath: ${{ variables.bicepFilePath }}
-    #       deploymentName: ${{ variables.deploymentName }}
-    #       backendServiceArmConnection: ${{ variables.backendServiceArmConnection }}
-    #       location: ${{ variables.location }}
-    #       backendAzureRmResourceGroupName: ${{ variables.backendAzureRmResourceGroupName }}
+     # tas for backend
+      - template: steps/deploy-backend.yaml
+        parameters:
+          bicepFilePath: ${{ variables.bicepFilePath }}
+          deploymentName: ${{ variables.deploymentName }}
+          backendServiceArmConnection: ${{ variables.backendServiceArmConnection }}
+          location: ${{ variables.location }}
+          backendAzureRmResourceGroupName: ${{ variables.backendAzureRmResourceGroupName }}
       
       # deploy infra task
       - template: steps/deploy-Infra.yaml
