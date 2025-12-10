@@ -5,6 +5,7 @@ resource "azurerm_key_vault" "dia-kv" {
   location                    = var.location
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   sku_name                    = "standard"
+  purge_protection_enabled   = false # if you want to activate purge deletion
   depends_on = [
     azurerm_resource_group.rg
   ]
