@@ -25,11 +25,11 @@ resource "azurerm_app_service_plan" "asp" {
   reserved            = true
   #sku_name            = "var.app_plan_sku_name" # outdated
 
-  # sku Stock Keeping Unit - the price tier and size
-  sku {
-  tier = "Free"      # Free
-  size = "F1"        # Shared, 1 GB RAM, 60 min/day limit
-  }
+  # # sku Stock Keeping Unit - the price tier and size
+  # sku {
+  # tier = "Free"      # Free
+  # size = "F1"        # Shared, 1 GB RAM, 60 min/day limit
+  # }
 
     # sku Stock Keeping Unit - the price tier and size
   # tier: The pricing/feature level (Free, Basic, Standard, Premium)
@@ -40,10 +40,10 @@ resource "azurerm_app_service_plan" "asp" {
   #   size = "S1"   # 1 core, 1.75 GB RAM
   # }
 
-  #   sku {
-  #   tier = "Basic"     # Costs ~$13/month
-  #   size = "B1"        # 1 core, 1.75 GB RAM
-  # }
+  sku {
+    tier = "Basic"     # Costs ~$13/month
+    size = "B1"        # 1 core, 1.75 GB RAM
+  }
 
 }
 
@@ -61,7 +61,7 @@ resource "azurerm_linux_web_app" "web-app" {
   }
   
   site_config {
-    always_on = false  # Change from true becuase cant be done on free tier
+    always_on = true #false  # Change from true becuase cant be done on free tier
     #linux_fx_version = "DOCKER|${var.docker_registry_server_name}/${var.docker_custom_image_name}:${var.docker_custom_image_tag}"
     #   ip_restriction {
     #   action      = "Allow"
