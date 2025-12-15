@@ -18,3 +18,4 @@ Managed Identity for App Service to access ACR.
 Azure Container Registry (ACR) to store the container image.
 App Service Plan to define the hosting environment.
 App Service to deploy the Flask application and handle auto-scaling.
+
